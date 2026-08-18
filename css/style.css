@@ -1,0 +1,274 @@
+/* ==========================================================================
+   StockMaster - Sistema de Controle de Estoque e Vendas
+   Grupo 2 - Belem do Piaui | Projeto Integrador II - UESPI/UAPI
+   Folha de estilo unica do projeto. Escrita a mao, sem framework.
+   Organizacao: 1) variaveis  2) base  3) estrutura do app  4) componentes
+                5) telas  6) responsividade (RNF01)
+   ========================================================================== */
+
+/* --------------------------- 1. VARIAVEIS -------------------------------- */
+:root {
+  --grad: linear-gradient(135deg, #4F6EF7 0%, #8B5CF6 55%, #A855F7 100%);
+  --roxo: #7C3AED;
+  --roxo-claro: #F1EBFE;
+  --azul: #2F80ED;
+  --verde: #27AE60;
+  --verde-claro: #E9F8EF;
+  --laranja: #F2994A;
+  --vermelho: #EB5757;
+  --bg: #F5F6F8;
+  --branco: #FFFFFF;
+  --txt: #1F2430;
+  --txt2: #8A90A0;
+  --linha: #E8EAF0;
+  --sombra: 0 1px 3px rgba(31, 36, 48, .09);
+  --sombra-alta: 0 10px 40px rgba(31, 36, 48, .22);
+  --raio: 13px;
+}
+
+/* ------------------------------ 2. BASE ---------------------------------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--txt);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select { font-family: inherit; color: inherit; }
+button { cursor: pointer; border: none; background: none; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+svg.ic { width: 19px; height: 19px; stroke: currentColor; stroke-width: 1.9;
+         fill: none; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+svg.ic-sm { width: 15px; height: 15px; }
+svg.ic-lg { width: 26px; height: 26px; }
+
+.oculto { display: none !important; }
+
+/* -------------------------- 3. ESTRUTURA DO APP -------------------------- */
+.app {
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 74px;          /* espaco para a barra de abas fixa */
+}
+
+/* cabecalho com gradiente */
+.topo { background: var(--grad); padding: 16px 20px 22px; color: #fff; flex: none; }
+.topo .linha1 { display: flex; align-items: center; justify-content: space-between; }
+.topo .marca { display: flex; align-items: center; gap: 9px;
+                font-size: 16px; font-weight: 700; letter-spacing: -.2px; }
+.topo h1 { font-size: 23px; font-weight: 700; letter-spacing: -.4px; margin-top: 16px; }
+.topo p  { font-size: 12.5px; opacity: .85; margin-top: 3px; }
+.topo .titulo-acao { display: flex; align-items: flex-end; justify-content: space-between; }
+.topo button { color: #fff; display: flex; align-items: center; }
+
+.conteudo { flex: 1; padding: 16px 16px 0; }
+
+/* barra de abas inferior */
+.abas {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 430px; z-index: 20;
+  background: #fff; border-top: 1px solid var(--linha);
+  display: flex; padding: 9px 0 12px; justify-content: space-around;
+}
+.aba { display: flex; flex-direction: column; align-items: center; gap: 4px;
+       font-size: 10.5px; color: var(--txt2); }
+.aba.on { color: var(--roxo); font-weight: 700; }
+.aba.on .bolha { background: var(--roxo-claro); }
+.bolha { width: 44px; height: 26px; border-radius: 13px;
+         display: flex; align-items: center; justify-content: center; }
+
+/* ---------------------------- 4. COMPONENTES ----------------------------- */
+.card { background: #fff; border-radius: var(--raio); box-shadow: var(--sombra); padding: 14px 15px; }
+.card + .card { margin-top: 11px; }
+.card.critico { border-left: 4px solid var(--vermelho); }
+
+.sec { font-size: 13px; font-weight: 700; margin: 16px 2px 9px; }
+.sec-sub { font-size: 11.5px; color: var(--txt2); font-weight: 400; margin-left: 5px; }
+
+/* tiles coloridos do dashboard */
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+.tile { border-radius: var(--raio); padding: 13px 14px; color: #fff; }
+.tile .ico { opacity: .9; }
+.tile .n { font-size: 24px; font-weight: 700; margin-top: 9px; letter-spacing: -.5px; }
+.tile .n.menor { font-size: 20px; }
+.tile .l { font-size: 11.5px; opacity: .92; margin-top: 1px; }
+.tile.azul    { background: var(--azul); }
+.tile.verde   { background: var(--verde); }
+.tile.roxo    { background: var(--roxo); }
+.tile.laranja { background: var(--laranja); }
+
+/* linha de produto */
+.item { display: flex; align-items: center; gap: 11px; }
+.item + .item { margin-top: 11px; }
+.item .txt { flex: 1; min-width: 0; }
+.item .nome { font-size: 13.5px; font-weight: 700; }
+.item .cat  { font-size: 11px; color: var(--txt2); margin-top: 1px; }
+.item .est  { font-size: 11.5px; color: var(--txt2); margin-top: 5px; }
+.item .est b { color: var(--txt); }
+.item .est.baixo { color: var(--vermelho); font-weight: 700; }
+.preco { font-size: 13.5px; font-weight: 700; color: var(--verde); white-space: nowrap; }
+.acoes { display: flex; gap: 9px; color: var(--txt2); justify-content: flex-end; margin-top: 7px; }
+.acoes button.editar  { color: var(--azul); display: flex; }
+.acoes button.excluir { color: var(--vermelho); display: flex; }
+
+.mais { width: 31px; height: 31px; border-radius: 50%; background: var(--azul); color: #fff;
+        display: flex; align-items: center; justify-content: center; flex: none; }
+.mais:disabled { background: var(--linha); color: var(--txt2); cursor: not-allowed; }
+.fab { width: 34px; height: 34px; border-radius: 50%; background: #fff; color: var(--roxo);
+       display: flex; align-items: center; justify-content: center; flex: none; }
+
+/* linha simples (alertas, vendas, itens) */
+.linha-reg { display: flex; align-items: center; justify-content: space-between;
+             padding: 9px 0; gap: 10px; }
+.linha-reg + .linha-reg { border-top: 1px solid var(--linha); }
+.linha-reg .n { font-size: 13px; font-weight: 600; }
+.linha-reg .sub { font-size: 11px; color: var(--txt2); margin-top: 2px; }
+.linha-reg .q { font-size: 12px; font-weight: 700; color: var(--laranja); white-space: nowrap; }
+.linha-reg .q.crit  { color: var(--vermelho); }
+.linha-reg .q.valor { color: var(--verde); }
+.linha-reg .q.neutro { color: var(--txt); }
+.compacta .linha-reg { padding: 7px 0; }
+
+/* formulario */
+.campo { margin-top: 13px; }
+.campo label { font-size: 11.5px; font-weight: 700; color: var(--txt2);
+               display: block; margin-bottom: 5px; }
+.campo input, .campo select {
+  width: 100%; height: 42px; background: #fff; border: 1px solid var(--linha);
+  border-radius: 10px; padding: 0 13px; font-size: 13.5px; outline: none;
+  -webkit-appearance: none; appearance: none;
+}
+.campo select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A90A0' stroke-width='2' stroke-linecap='round'><path d='m6 9 6 6 6-6'/></svg>");
+                background-repeat: no-repeat; background-position: right 11px center;
+                background-size: 16px; padding-right: 34px; }
+.campo input:focus, .campo select:focus { border-color: var(--roxo); box-shadow: 0 0 0 3px var(--roxo-claro); }
+.campo input.erro, .campo select.erro { border-color: var(--vermelho); }
+.campo .prefixo { position: relative; }
+.campo .prefixo span { position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+                       font-size: 12.5px; color: var(--txt2); }
+.campo .prefixo input { padding-left: 38px; font-weight: 700; font-size: 16px; }
+.dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+
+.btn-grad { background: var(--grad); color: #fff; width: 100%; height: 46px; border-radius: 11px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            font-size: 14.5px; font-weight: 700; box-shadow: 0 3px 10px rgba(124, 58, 237, .32); }
+.btn-grad:disabled { opacity: .5; box-shadow: none; cursor: not-allowed; }
+.btn-texto { display: block; width: 100%; text-align: center; font-size: 13px;
+             color: var(--txt2); margin-top: 14px; font-weight: 600; }
+
+.aviso { background: var(--roxo-claro); box-shadow: none; display: flex; gap: 10px;
+         align-items: flex-start; margin-top: 18px; }
+.aviso svg { color: var(--roxo); margin-top: 1px; }
+.aviso p { font-size: 11.5px; color: #4A3E70; line-height: 1.5; }
+
+.msg-erro { background: #FDECEC; color: #A02A2A; border-radius: 10px; padding: 10px 12px;
+            font-size: 12px; margin-top: 14px; line-height: 1.45; }
+.msg-ok { background: var(--verde-claro); color: #1B6B3F; border-radius: 10px; padding: 10px 12px;
+          font-size: 12px; margin-top: 14px; }
+
+.busca { display: flex; align-items: center; gap: 9px; height: 40px; background: #fff;
+         border: 1px solid var(--linha); border-radius: 10px; padding: 0 13px; color: var(--txt2); }
+.busca input { flex: 1; border: none; outline: none; font-size: 13px; background: none; }
+
+.filtros { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { font-size: 11.5px; padding: 7px 13px; border-radius: 999px;
+        background: #fff; color: var(--txt2); border: 1px solid var(--linha); }
+.chip.on { background: var(--roxo); color: #fff; font-weight: 700; border-color: var(--roxo); }
+
+.vazio { text-align: center; color: var(--txt2); font-size: 12.5px; padding: 26px 10px; line-height: 1.5; }
+
+.barra-prog { height: 6px; background: #EFEAFB; border-radius: 3px; margin-top: 6px; }
+.barra-prog span { display: block; height: 6px; background: var(--roxo); border-radius: 3px; }
+
+/* ------------------------------- 5. TELAS -------------------------------- */
+/* login */
+.tela-login { background: var(--grad); min-height: 100vh; display: flex;
+              align-items: center; justify-content: center; padding: 26px; }
+.caixa-login { width: 100%; max-width: 378px; background: #fff; border-radius: 20px;
+               padding: 30px 24px; box-shadow: var(--sombra-alta); }
+.logo-redondo { width: 62px; height: 62px; border-radius: 50%; background: var(--grad);
+                margin: 0 auto; display: flex; align-items: center; justify-content: center; color: #fff; }
+.caixa-login h1 { font-size: 24px; font-weight: 700; text-align: center;
+                  margin-top: 15px; letter-spacing: -.5px; }
+.caixa-login .sub { font-size: 12.5px; color: var(--txt2); text-align: center; margin-top: 4px; }
+.caixa-login .rodape { font-size: 11.5px; color: var(--txt2); text-align: center;
+                       margin-top: 15px; line-height: 1.5; }
+.lembrar { display: flex; align-items: center; gap: 8px; margin-top: 13px;
+           font-size: 12px; color: var(--txt2); }
+.lembrar input { width: 16px; height: 16px; accent-color: var(--roxo); }
+.contas-teste { margin-top: 18px; border-top: 1px solid var(--linha); padding-top: 12px;
+                font-size: 11px; color: var(--txt2); line-height: 1.6; text-align: center; }
+.contas-teste b { color: var(--txt); }
+
+/* dashboard / relatorios */
+.destaque { display: flex; justify-content: space-between; align-items: flex-start; }
+.destaque .rotulo { font-size: 11.5px; color: var(--txt2); }
+.destaque .valor { font-size: 26px; font-weight: 700; color: var(--verde);
+                   letter-spacing: -.6px; margin-top: 4px; }
+.selo { background: var(--verde-claro); color: var(--verde); font-size: 11.5px;
+        font-weight: 700; padding: 5px 9px; border-radius: 8px; white-space: nowrap; }
+.grafico { width: 100%; height: 120px; margin-top: 12px; display: block; }
+.eixo { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--txt2); }
+.mini-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 11px; }
+.mini-cards .card { padding: 12px 14px; margin-top: 0; }
+.mini-cards .rotulo { font-size: 11px; color: var(--txt2); }
+.mini-cards .valor { font-size: 21px; font-weight: 700; margin-top: 4px; }
+
+/* venda */
+.total-venda { display: flex; justify-content: space-between; align-items: baseline;
+               margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--linha); }
+.total-venda .rotulo { font-size: 13px; font-weight: 700; }
+.total-venda .valor { font-size: 23px; font-weight: 700; color: var(--verde); letter-spacing: -.5px; }
+.qtd { display: flex; align-items: center; gap: 8px; }
+.qtd button { width: 24px; height: 24px; border-radius: 7px; background: var(--bg);
+              color: var(--txt2); font-size: 15px; font-weight: 700; line-height: 1;
+              display: flex; align-items: center; justify-content: center; }
+.rodape-nota { font-size: 11px; color: var(--txt2); text-align: center; margin-top: 8px; }
+
+/* modal de categorias */
+.fundo-modal { position: fixed; inset: 0; background: rgba(31, 36, 48, .45);
+               display: flex; align-items: flex-end; justify-content: center; z-index: 40; }
+.modal { width: 100%; max-width: 430px; background: #fff; border-radius: 18px 18px 0 0;
+         padding: 18px 18px 26px; max-height: 86vh; overflow-y: auto; }
+.modal h2 { font-size: 16px; font-weight: 700; }
+.modal .fechar { position: absolute; right: 20px; color: var(--txt2); }
+.modal-topo { display: flex; align-items: center; justify-content: space-between; }
+.lista-cat { margin-top: 8px; }
+
+/* ------------------------ 6. RESPONSIVIDADE (RNF01) ---------------------- */
+/* A partir de 760px o aplicativo deixa de ser uma coluna unica de celular:
+   o conteudo ganha largura, as abas passam a ficar no topo e as listas
+   aproveitam duas colunas. */
+@media (min-width: 760px) {
+  .app { max-width: 900px; padding-bottom: 0; }
+  .topo { padding: 18px 28px 26px; }
+  .topo h1 { font-size: 27px; }
+  .conteudo { padding: 20px 28px 40px; }
+  .abas { position: static; transform: none; max-width: none; width: auto;
+          border-top: none; background: transparent; justify-content: flex-start;
+          gap: 6px; padding: 14px 28px 0; order: -1; }
+  .aba { flex-direction: row; gap: 7px; font-size: 13px; padding: 8px 14px;
+         border-radius: 999px; background: #fff; border: 1px solid var(--linha); }
+  .aba .bolha { width: auto; height: auto; background: none !important; }
+  .aba.on { background: var(--roxo); color: #fff; border-color: var(--roxo); }
+  .tiles { grid-template-columns: repeat(4, 1fr); }
+  .colunas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+  .grafico { height: 200px; }
+  .modal { border-radius: 18px; max-width: 520px; }
+  .fundo-modal { align-items: center; padding: 20px; }
+}
+
+@media (min-width: 1100px) {
+  .app { max-width: 1080px; }
+  .lista-produtos { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+  .lista-produtos .card + .card { margin-top: 0; }
+}

@@ -1,0 +1,16 @@
+# dependências
+node_modules/
+
+# arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# configurações de editor
+.vscode/
+.idea/
+*.swp
+
+# arquivos temporários
+*.log
+*.tmp

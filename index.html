@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster — Entrar no sistema</title>
+  <meta name="description" content="StockMaster — sistema de controle de estoque e vendas do Grupo 2 (Belém do Piauí).">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="tela-login">
+    <form class="caixa-login" id="form-login" novalidate>
+
+      <div class="logo-redondo">
+        <svg class="ic ic-lg" viewBox="0 0 24 24">
+          <path d="M3 8.5 12 4l9 4.5v7L12 20l-9-4.5v-7z"/>
+          <path d="m3 8.5 9 4.5 9-4.5M12 13v7"/>
+        </svg>
+      </div>
+
+      <h1>StockMaster</h1>
+      <p class="sub">Controle de Vendas e Estoque</p>
+
+      <div class="campo" style="margin-top:24px">
+        <label for="login">Login</label>
+        <input type="text" id="login" name="login" autocomplete="username"
+               placeholder="seu nome de acesso" required>
+      </div>
+
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" autocomplete="current-password"
+               placeholder="sua senha" required>
+      </div>
+
+      <label class="lembrar" for="lembrar">
+        <input type="checkbox" id="lembrar" name="lembrar">
+        Manter conectado
+      </label>
+
+      <div id="erro" class="msg-erro oculto" role="alert"></div>
+
+      <button type="submit" class="btn-grad" style="margin-top:20px">
+        <svg class="ic ic-sm" viewBox="0 0 24 24">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+          <path d="M10 17l5-5-5-5M15 12H3"/>
+        </svg>
+        Entrar
+      </button>
+
+      <p class="rodape">
+        Esqueceu a senha?<br>Solicite ao administrador do sistema.
+      </p>
+
+      <div class="contas-teste">
+        Acessos para avaliação desta entrega:<br>
+        <b>matheus.barros</b> / admin123 — administrador<br>
+        <b>mariana.gomes</b> / venda123 — operador
+      </div>
+
+    </form>
+  </main>
+
+  <script src="js/banco.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

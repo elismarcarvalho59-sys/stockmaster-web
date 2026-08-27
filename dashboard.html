@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster — Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="topo">
+      <div class="linha1" id="linha-marca"></div>
+      <h1>Dashboard</h1>
+      <p id="subtitulo">Visão geral do seu negócio</p>
+    </header>
+
+    <main class="conteudo">
+
+      <!-- indicadores do negócio -->
+      <section class="tiles" id="tiles" aria-label="Indicadores do negócio"></section>
+
+      <div class="colunas">
+        <section>
+          <h2 class="sec">Alertas de Estoque <span class="sec-sub">itens no limite mínimo</span></h2>
+          <div class="card compacta" id="alertas" style="padding:4px 15px"></div>
+        </section>
+
+        <section>
+          <h2 class="sec">Últimas Vendas <span class="sec-sub" id="rotulo-vendas">hoje</span></h2>
+          <div class="card compacta" id="ultimas-vendas" style="padding:4px 15px"></div>
+        </section>
+      </div>
+
+    </main>
+
+    <nav class="abas" id="abas" aria-label="Navegação principal"></nav>
+  </div>
+
+  <script src="js/banco.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

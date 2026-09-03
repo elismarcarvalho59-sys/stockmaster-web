@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster — Estoque</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="topo">
+      <div class="linha1" id="linha-marca"></div>
+      <div class="titulo-acao">
+        <div>
+          <h1>Estoque</h1>
+          <p id="subtitulo">carregando…</p>
+        </div>
+        <a class="fab" href="produto.html" title="Cadastrar produto" aria-label="Cadastrar produto">
+          <svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <main class="conteudo">
+
+      <!-- RF04: busca por nome e filtro por categoria -->
+      <div class="busca">
+        <svg class="ic ic-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="busca" placeholder="Buscar produto…" aria-label="Buscar produto pelo nome">
+      </div>
+
+      <div class="filtros" id="filtros" style="margin-top:12px" role="group" aria-label="Filtrar por categoria"></div>
+
+      <div id="aviso" class="msg-ok oculto" role="status"></div>
+
+      <section class="lista-produtos" id="lista" style="margin-top:12px"></section>
+
+      <button class="btn-texto" id="btn-categorias" style="margin:18px 0 24px">
+        Gerenciar categorias
+      </button>
+
+    </main>
+
+    <nav class="abas" id="abas" aria-label="Navegação principal"></nav>
+  </div>
+
+  <!-- RF11: cadastro de categorias de produtos -->
+  <div class="fundo-modal oculto" id="modal-categorias">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-categorias">
+      <div class="modal-topo">
+        <h2 id="titulo-categorias">Categorias</h2>
+        <button class="fechar" id="fechar-categorias" aria-label="Fechar">
+          <svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+
+      <form id="form-categoria">
+        <div class="campo">
+          <label for="nova-categoria">Nova categoria</label>
+          <input type="text" id="nova-categoria" placeholder="ex.: Periféricos" maxlength="50">
+        </div>
+        <div id="erro-categoria" class="msg-erro oculto" role="alert"></div>
+        <button type="submit" class="btn-grad" style="margin-top:14px;height:42px">
+          <svg class="ic ic-sm" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          Adicionar categoria
+        </button>
+      </form>
+
+      <div class="card lista-cat" id="lista-categorias" style="margin-top:16px;padding:4px 15px"></div>
+    </div>
+  </div>
+
+  <script src="js/banco.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/estoque.js"></script>
+</body>
+</html>

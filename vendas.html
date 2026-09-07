@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster — Vendas</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="topo">
+      <div class="linha1" id="linha-marca"></div>
+      <h1>Nova venda</h1>
+      <p id="subtitulo">carregando…</p>
+    </header>
+
+    <main class="conteudo">
+
+      <div class="filtros" role="group" aria-label="Modo de exibição">
+        <button class="chip on" id="chip-nova">Nova venda</button>
+        <button class="chip" id="chip-historico">Histórico</button>
+      </div>
+
+      <!-- ===================== NOVA VENDA ===================== -->
+      <section id="painel-nova">
+
+        <div class="colunas">
+          <div>
+            <h2 class="sec">Produtos disponíveis</h2>
+            <div class="busca" style="margin-bottom:11px">
+              <svg class="ic ic-sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <input type="search" id="busca" placeholder="Buscar produto…" aria-label="Buscar produto">
+            </div>
+            <div class="card" id="disponiveis" style="padding:12px 15px"></div>
+          </div>
+
+          <div>
+            <h2 class="sec">Itens da venda <span class="sec-sub" id="resumo-itens">nenhum item</span></h2>
+            <div class="card compacta" id="itens" style="padding:10px 15px"></div>
+
+            <div class="card" style="margin-top:12px">
+              <div class="campo" style="margin-top:0">
+                <label for="pagamento">Forma de pagamento</label>
+                <select id="pagamento"></select>
+              </div>
+
+              <div class="total-venda">
+                <span class="rotulo">Total da venda</span>
+                <span class="valor" id="total">R$ 0,00</span>
+              </div>
+
+              <div id="erro" class="msg-erro oculto" role="alert"></div>
+              <div id="sucesso" class="msg-ok oculto" role="status"></div>
+
+              <button class="btn-grad" id="btn-finalizar" style="margin-top:13px;height:44px" disabled>
+                <svg class="ic ic-sm" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg>
+                Finalizar venda
+              </button>
+
+              <p class="rodape-nota">O estoque dos produtos será atualizado automaticamente.</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================== HISTÓRICO ===================== -->
+      <section id="painel-historico" class="oculto" style="padding-bottom:20px">
+        <h2 class="sec">Histórico de vendas <span class="sec-sub" id="resumo-historico"></span></h2>
+        <div id="historico"></div>
+      </section>
+
+    </main>
+
+    <nav class="abas" id="abas" aria-label="Navegação principal"></nav>
+  </div>
+
+  <script src="js/banco.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/vendas.js"></script>
+</body>
+</html>

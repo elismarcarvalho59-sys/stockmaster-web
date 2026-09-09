@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster — Relatórios</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <header class="topo">
+      <div class="linha1" id="linha-marca"></div>
+      <h1>Relatórios</h1>
+      <p id="periodo">carregando…</p>
+    </header>
+
+    <main class="conteudo">
+
+      <div class="filtros" id="filtros" role="group" aria-label="Período do relatório">
+        <button class="chip on" data-periodo="mes">Este mês</button>
+        <button class="chip" data-periodo="semana">Semana</button>
+        <button class="chip" data-periodo="hoje">Hoje</button>
+      </div>
+
+      <!-- faturamento e evolução diária (RF09) -->
+      <section class="card" style="margin-top:12px">
+        <div class="destaque">
+          <div>
+            <div class="rotulo">Faturamento do período</div>
+            <div class="valor" id="faturamento">R$ 0,00</div>
+          </div>
+          <div class="selo" id="variacao">—</div>
+        </div>
+        <svg class="grafico" id="grafico" viewBox="0 0 360 120" preserveAspectRatio="none"
+             role="img" aria-label="Evolução diária do faturamento"></svg>
+        <div class="eixo" id="eixo"></div>
+      </section>
+
+      <div class="mini-cards">
+        <div class="card">
+          <div class="rotulo">Vendas realizadas</div>
+          <div class="valor" id="qtd-vendas">0</div>
+        </div>
+        <div class="card">
+          <div class="rotulo">Ticket médio</div>
+          <div class="valor" id="ticket">R$ 0,00</div>
+        </div>
+      </div>
+
+      <section>
+        <h2 class="sec">Produtos mais vendidos</h2>
+        <div class="card" id="mais-vendidos" style="padding:12px 15px"></div>
+      </section>
+
+      <section style="padding-bottom:24px">
+        <h2 class="sec">Vendas do período <span class="sec-sub" id="resumo-lista"></span></h2>
+        <div class="card compacta" id="lista-vendas" style="padding:4px 15px"></div>
+      </section>
+
+    </main>
+
+    <nav class="abas" id="abas" aria-label="Navegação principal"></nav>
+  </div>
+
+  <script src="js/banco.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/relatorios.js"></script>
+</body>
+</html>
